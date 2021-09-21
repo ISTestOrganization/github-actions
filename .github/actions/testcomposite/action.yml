@@ -6,4 +6,5 @@ runs:
   using: composite
   steps:
     - name: test
-      run: echo 123
+      run: echo "🎉 The job was automatically triggered"
+      shell: bash
