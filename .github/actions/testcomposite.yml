@@ -1,0 +1,9 @@
+name: testcomposite
+description: none
+inputs: {}
+outputs: {}
+runs:
+  using: composite
+  steps:
+    - name: test
+      run: echo 123
