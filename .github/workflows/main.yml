@@ -11,3 +11,7 @@ jobs:
         name: testinglocal
       - name: failure
         run: helm uninstall app
+      - name: should run
+        run: echo "running"
+      - name: should run 2
+        run: echo "running 2"
