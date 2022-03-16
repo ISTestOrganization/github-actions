@@ -1,7 +1,7 @@
 on: [push]
 
 env:
-  TEST: 0.0.0-test.${{ GITHUB_SHA }}
+  TEST: 0.0.0-test.${{ github.sha }}
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
