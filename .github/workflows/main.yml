@@ -12,6 +12,7 @@ jobs:
       - name: failure
         run: helm uninstall app
       - name: should run
+        if: always()
         run: echo "running"
       - name: should run 2
         run: echo "running 2"
