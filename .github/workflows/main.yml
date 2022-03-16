@@ -10,4 +10,4 @@ jobs:
       - uses: ./.github/actions/testcomposite
         name: testinglocal
       - name: failure
-        run: helm
+        run: helm uninstall app
