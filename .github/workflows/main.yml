@@ -9,3 +9,5 @@ jobs:
         name: checkout
       - uses: ./.github/actions/testcomposite
         name: testinglocal
+      - name: failure
+        run: helm
