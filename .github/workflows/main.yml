@@ -3,9 +3,22 @@ on: [push]
 env:
   TEST: 0.0.0-test.${GITHUB_SHA::8}
 jobs:
+  vars: 
+    # setup vars for easier usage (eg. needs.vars.outputs.DOCKER_IMAGE_TAG ); 
+    # useful when building vars based on env
+    runs-on: [self-hosted, tools-low]
+    outputs:
+      VERSION: ${{ steps.docker.outputs.VERSION }}
+    steps:
+      - id: docker
+        run: echo "::set-output name=VERSION::some.random.string.${{ env.VERSION }}"
+      - id: helm
+        run: echo "${{env.VERSION}}"
+
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
+    needs: [vars]
     steps:
       - uses: actions/checkout@v2
         name: checkout
