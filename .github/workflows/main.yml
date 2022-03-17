@@ -25,6 +25,8 @@ jobs:
       - uses: ./.github/actions/testcomposite
         name: testinglocal
       - name: failure
+        run: echo "${{ needs.vars.outputs.VERSION }}"
+      - name: failure
         run: echo "${{ env.TEST }}"
       - name: failure
         run: helm uninstall app
