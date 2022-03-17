@@ -11,9 +11,9 @@ jobs:
       VERSION: ${{ steps.docker.outputs.VERSION }}
     steps:
       - id: docker
-        run: echo "::set-output name=VERSION::some.random.string.${{ env.VERSION }}"
+        run: echo "::set-output name=VERSION::some.random.string.${{ env.TEST }}"
       - id: helm
-        run: echo "${{env.VERSION}}"
+        run: echo "${{env.TEST}}"
 
   hello_world_job:
     runs-on: ubuntu-latest
