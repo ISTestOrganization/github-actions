@@ -1,7 +1,7 @@
 on: [push]
 
 env:
-  TEST: 0.0.0-test.${GITHUB_SHA::8}
+  VERSION: 0.0.1-develop.exp.sha.${GITHUB_SHA::6}
 jobs:
   vars: 
     # setup vars for easier usage (eg. needs.vars.outputs.DOCKER_IMAGE_TAG ); 
@@ -11,9 +11,9 @@ jobs:
       VERSION: ${{ steps.docker.outputs.VERSION }}
     steps:
       - id: docker
-        run: echo "::set-output name=VERSION::some.random.string.${{ env.TEST }}"
+        run: echo "::set-output name=VERSION::some.random.string.${{ env.VERSION }}"
       - id: helm
-        run: echo "${{env.TEST}}"
+        run: echo "${{env.VERSION}}"
 
   hello_world_job:
     runs-on: ubuntu-latest
@@ -27,7 +27,11 @@ jobs:
       - name: failure
         run: echo "${{ needs.vars.outputs.VERSION }}"
       - name: failure
-        run: echo "${{ env.TEST }}"
+        run: echo "${{ env.VERSION }}"
+      - name: failure
+        run: "${{ needs.vars.outputs.VERSION }}"
+      - name: failure
+        run: "${{ env.VERSION }}"
       - name: failure
         run: helm uninstall app
       - name: should run
